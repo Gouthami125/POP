@@ -1,0 +1,537 @@
+1 Simulation of a Simple Calculator.
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+
+	int operand1, operand2;
+	char coperator;
+
+	clrscr();
+
+	printf("\nEnter the arithmetic expression\n");
+	scanf("%d%c%d", &operand1, &coperator, &operand2);
+	switch(coperator)
+	{
+		case '+': printf("\nResult = %d", operand1 + operand2);
+			  break;
+		case '-': printf("\nResult = %d", operand1 - operand2);
+			  break;
+		case '*': printf("\nResult = %d", operand1 * operand2);
+			  break;
+		case '/': printf("\nResult = %f", (float) operand1 / operand2);
+			  break;
+		case '%': printf("\nResult = %d", operand1 % operand2);
+			  break;
+		default : printf("Invalid Arithmetic Expression");
+	}
+	getch();
+}             
+
+
+2 Compute the roots of a quadratic equation by accepting the coefficients. Print appropriate messages.
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+float a,b,c,d,r1,r2;
+clrscr();
+printf("Enter the coefficients of the equation\n");
+scanf("%f%f%f",&a,&b,&c);
+if(a==0)
+{
+printf("Roots cannot be determined");
+getch();
+exit(0);
+}
+d=b*b-4*a*c;
+if(d==0)
+{
+printf("Roots are real and equal");
+r1=-b/(2*a);
+r2=-b/(2*a);
+printf("\nRoots are %f and %f",r1,r2);
+}
+else if(d>0)
+{
+printf("\nRoots are real and distinct");
+r1=-b+sqrt(d)/(2*a);
+r2=-b-sqrt(d)/(2*a);
+printf("\nRoots are %f and %f",r1,r2);
+}
+else
+{
+printf("\nRoots are imagnary");
+r1=-b/(2*a);
+r2=sqrt(fabs(d))/(2*a);
+printf("\nThe first root is %f+i%f",r1,r2);
+printf("\nThe second root is %f-i%f",r1,r2);
+}
+getch();
+}
+
+
+3 An electricity board charges the following rates for the use of electricity: for the first 200 units 80 paise per unit:
+for the next 100 units 90 paise per unit: beyond 300 units Rs 1 per unit. All users are charged a minimum of Rs.
+100 as meter charge. If the total amount is more than Rs 400, then an additional surcharge of 15% of total amount
+is charged. Write a program to read the name of the user, number of units consumed and print out the charges.
+
+
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+void main()
+{
+   int cust_no, unit_con;
+   float charge,surcharge=0, amt, total_amt;
+   char nm[25];
+
+   clrscr();
+
+   printf("Enter the customer IDNO :\a");
+   scanf("%d",&cust_no);
+   printf("Enter the customer Name :\t");
+   scanf("%s",nm);
+   printf("Enter the unit consumed by customer  :\t");
+   scanf("%d",&unit_con);
+
+   if (unit_con <200 )
+      charge = 0.80;
+   else if (unit_con>=200 && unit_con<300)
+      charge = 0.90;
+   else
+      charge = 1.00;
+
+   amt = unit_con*charge;
+   if (amt>400)
+      surcharge = amt*15/100.0;
+   total_amt = amt+surcharge;
+
+   printf("\t\t\t\nElectricity Bill\n\n");
+   printf("Customer IDNO                       :\t%d",cust_no);
+   printf("\nCustomer Name                       :\t%s",nm);
+   printf("\nunit Consumed                       :\t%d",unit_con);
+   printf("\nAmount Charges @Rs. %4.2f  per unit  :\t%0.2f",charge,amt);
+   printf("\nSurchage Amount                     :\t%.2f",surcharge);
+   printf("\nMinimum meter charge Rs             :\t%d",100);
+   printf("\nNet Amount Paid By the Customer     :\t%.2f",total_amt+100);
+
+   getch();
+}
+
+
+
+4. Write a C Program to display the following by reading the number of rows as input,
+	1
+                 1 2 1
+              1 2 3 2 1
+          1 2 3 4 3 2 1
+---------------------------
+	nth row
+
+#include <stdio.h>
+#include <conio.h>
+
+void main()
+{
+
+    int i, j, n;
+    clrscr();
+   
+    printf("Enter number of rows\n");
+    scanf("%d",&n);
+    for(i=1;i<=n;i++)
+    {
+      for(j=n;j>i;j--)
+        printf("  ");
+      for(j=1;j<=i;j++)
+	  printf("%d ",j);
+      for(j=j-2;j>=1;j--)
+	  printf("%d ",j);
+      printf("\n");
+    }
+    getch();
+}
+
+
+5 Implement Binary Search on Integers.
+
+//Program to implement binary search
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int a[30],i,n,low,key,high,mid,found;
+
+	clrscr();
+
+	printf("Enter n value\n");
+	scanf("%d",&n);
+
+	printf("Enter n elements\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	printf("Entr key to b searched\n");
+	scanf("%d",&key);
+
+	low=0;
+	high=n-1;
+	mid=(low+high)/2;
+	while(low<=high)
+	{
+		mid=(low+high)/2;
+		if(a[mid]==key)
+		{
+			found=1;
+			break;
+		}
+		else if(a[mid]<key)
+			low=mid+1;
+		else
+			high=mid-1;
+	}
+	if(found==1)
+		printf("Successful Search key:%d found at %d position\n",key,mid+1);
+	else
+		printf("Unsuccessful search\n");
+	getch();
+}
+
+
+6 Implement Matrix multiplication and validate the rules of multiplication.
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int a[10]
+	[10],b[10][10],c[10][10],i,j,k;
+	int m,n,p,q;
+
+	clrscr();
+	printf("Enter the order of A matrix\n");
+	scanf("%d%d",&m,&n);
+	printf("Enter the order of B matrix\n");
+	scanf("%d%d",&p,&q);
+	if(n!=p)
+	{
+		printf("The matrix multiplication is not possible");
+		getch();
+		exit(0);
+	}
+	else
+	{
+		printf("Enter the values of matrix A\n");
+		for(i=0;i<m;i++)
+		for(j=0;j<n;j++)
+			scanf("%d",&a[i][j]);
+		printf("Enter the values of matrix B\n");
+		for(i=0;i<p;i++)
+		for(j=0;j<q;j++)
+			scanf("%d",&b[i][j]);
+		for(i=0;i<m;i++)
+		{
+			for(j=0;j<q;j++)
+			{
+				c[i][j]=0;
+				for(k=0;k<n;k++)
+				{
+					c[i][j]=c[i][j]+a[i][k]*b[k][j];
+				}
+			}
+		}
+	printf("The product matrix is:\n");
+	for(i=0;i<m;i++)
+	{
+		for(j=0;j<q;j++)
+		{
+			printf("%d\t",c[i][j]);
+		}
+		printf("\n");
+	}
+}
+getch();
+}
+
+
+7 Compute sin(x)/cos(x) using Taylor series approximation. Compare your result with the built-in library function.
+Print both the results with appropriate inferences.
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+	int n,i,xd,temp;
+	float x,sum,term;
+	clrscr();
+	printf("Enter the order\n");
+	scanf("%d",&n);
+
+	printf("\nEnter the value of x (Degree)\n");
+	scanf("%d",&xd);
+	temp=xd;
+	x=xd*3.142/180;
+	term=x;
+	sum=term;
+	for(i=3;i<=n;i+=2)
+	{
+		term=-(term*x*x)/(i*(i-1));
+		sum+=term;
+	}
+	printf("\nThe user defined value of sin(%d) is %f",temp,sum);
+	printf("\nUsing built-in function sin(%d) is %f",temp,sin(x));
+	getch();
+}
+
+NOTE: MAKE APPROPRIATE CHANGES TO cos(x)
+
+8 Sort the given set of N numbers using Bubble sort.
+
+//11. PROGRAM TO SORT USING BUBBLE SORT
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int i,j,n,temp,a[10];  
+	clrscr();
+	printf("Enter the array size\n");
+	scanf("%d",&n);
+	printf("Enter the values\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	for(i=0;i<n-1;i++) //n-1 is num of phases
+	{
+	    for(j=0;j<n-i-1;j++) //n-i-1 is no of comp.@each phse
+		{
+			if(a[j]>a[j+1])
+			{
+				temp=a[j];
+				a[j]=a[j+1];
+				a[j+1]=temp;
+			}
+
+		}
+	}
+	printf("Sorted Numbers are:\n");
+	for(i=0;i<n;i++)
+		printf("%d\t",a[i]);
+	getch();
+}
+
+9 Write functions to implement string operations such as compare, concatenate, and find string length. Use the
+parameter passing techniques.
+
+#include<stdio.h>
+#include<conio.h>
+int length(char str1[]);
+void concat(char str1[],char str2[]);
+void compare(char str1[],char str2[]);
+void main()
+{
+char str1[100],str2[100];
+int len,ch;
+clrscr();
+do
+{
+printf("\n*********************************\n");
+printf("\nWelcome to StringOperations ");
+printf("\nEnter \n1-->Srting Length");
+printf("\n2-->String Concatination");
+printf("\n3--> String Compare ");
+printf("\n4--> Exit");
+printf("\n*********************************\n");
+printf("\nEnter ur choice : ");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:printf("\nEnter the string:");
+scanf("%s",str1);
+len = length(str1);
+printf("\nLength of the String is : %d", len);
+break;
+case 2:printf("\nEnter 1st string:");
+scanf("%s",str1);
+printf("\nEnter 2nd string:");
+scanf("%s",str2);
+concat(str1,str2);
+printf("\nThe concatination of two Strings is : %s", str1);
+break;
+case 3:printf("\nEnter 1st string:");
+scanf("%s",str1);
+printf("\nEnter 2nd string:");
+gets(str2);
+scanf("%s",str2);
+compare(str1,str2);
+break;
+default:printf("\n Invalid choice");
+}
+}while(ch<4);
+getch();
+}
+// user defined function to find length of a string
+int length(char str1[])
+{
+int len = 0;
+while (str1[len] != '\0')
+len++;
+return (len);
+}
+// user defined function for comparing 2 strings
+void compare(char str1[],char str2[])
+{
+int i = 0;
+while (str1[i] == str2[i] && str1[i] != '\0')
+i++;
+if (str1[i] > str2[i])
+printf("str1 > str2");
+else if (str1[i] < str2[i])
+printf("str1 < str2");
+else
+printf("str1 = str2");
+}
+// user defined function for concatinating 2 strings
+void concat(char str1[], char str2[])
+{
+int i, j;
+i = length(str1);
+for (j = 0; str2[j] != '\0'; i++, j++)
+{
+str1[i] = str2[j];
+}
+str1[i] = '\0';
+}
+
+10 Implement structures to read, write and compute average- marks of the students, list the students scoring above
+and below the average marks for a class of N students.
+
+// 13. STUDENT STRUCTURES PROGRAM
+#include<stdio.h>
+#include<conio.h>
+struct student
+{
+	char name[20];
+	char usn[11];
+	int marks;
+};
+void main()
+{
+	struct student s[100];
+	int num, i,total=0;
+	double avg = 0.0;
+	clrscr();
+	printf("\n\tEnter the number of students : ");
+	scanf("%d", &num);
+	printf("\n\tEnter the Student details\n");
+	for(i=0;i<num;i++)
+	{
+	printf("\n\t*********************************************");
+	printf("\n\tName : "); scanf("%s", s[i].name);
+	printf("\n\tUSN : "); scanf("%s", s[i].usn);
+	printf("\n\tMarks : "); scanf("%d", &s[i].marks);
+	total =total+s[i].marks;
+	}
+	avg = total/num;
+	printf("\n\tThe average marks for the class is : %f\n", avg);
+	for(i=0;i<num;i++)
+	{
+	printf("\n\t**********************************************");
+	printf("\n\tName\t: %s", s[i].name);
+	printf("\n\tUSN\t: %s", s[i].usn);
+	printf("\n\tMarks\t: %d", s[i].marks);
+	if(s[i].marks < avg)
+	printf("\n\tThe student has scored below average\n");
+	else
+	printf("\n\tThe student has scored above average\n\a\a");
+	}
+	getch();
+}
+
+
+11 Develop a program using pointers to compute the sum, mean and standard deviation of all elements stored in
+an array of N real numbers.
+
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+void main()
+{
+	int i,n;
+	float *ptr,x[20],sum=0,mean,stdvsum,stdv;
+	
+	clrscr();
+
+	printf("Enter the number of real number to be stored\n");
+	scanf("%d",&n);
+	printf("Enter the elements\n");
+	for(i=0;i<n;i++)
+		scanf("%f",&x[i]);
+	ptr=x;
+	/* COMPUTE THE SUM OF ALL ELEMENTS*/
+	for(i=0;i<n;i++)
+	{
+		sum=sum+*ptr;
+		ptr++;
+	}
+	mean=sum/n;
+	ptr=x;
+	for(i=0;i<n;i++)
+	{
+		stdvsum=stdvsum+pow((*ptr-mean),2);
+		ptr++;
+	}
+	stdv=sqrt(stdvsum/n);
+	printf("sum=%.2f\n",sum);
+	printf("mean=%.2f\n",mean);
+	printf("standard deviation=%.2f\n",stdv);
+	getch();
+}
+
+
+12. Write a C program to copy a text file to another, read both the 
+input file name and target file name.
+
+#include <stdio.h>
+#include <conio.h>
+#include <stdlib.h>
+void main()
+{
+	  FILE *fp1, *fp2;
+	  char filename[100], c;
+	  clrscr();
+	   printf("Enter the filename to open for reading ");
+	   scanf("%s",filename);
+
+	// Open one file for reading
+	   fp1 = fopen(filename, "r");
+	   if (fp1 == NULL)
+	   {
+		      printf("Cannot open file %s ", filename);
+		      exit(0);
+	   }
+	  printf("Enter the filename to open for writing ");
+	  scanf("%s", filename);
+
+	// Open another file for writing
+
+	fp2 = fopen(filename, "w");
+	if (fp2 == NULL)
+	{
+		printf("Cannot open file %s ", filename);
+		exit(0);
+	}
+
+	// Read contents from file
+	c = fgetc(fp1);
+	while (c != EOF)
+	{
+		fputc(c, fp2);
+		c = fgetc(fp1);
+	}
+	printf("Contents copied to %s", filename);
+	fclose(fp1);
+	fclose(fp2);
+	getch();
+}
